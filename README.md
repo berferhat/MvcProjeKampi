@@ -54,7 +54,7 @@ Sözlük / blog tarzı bir uygulama. Üç tarafı var:
 ### Diğer
 - 404 sayfası
 - Galeri (`ImageFile`)
-- Grafik ekranı (şu an sabit veri)
+- Grafik ekranı
 - Vitrin tarafı (`Default`, `HomePage`)
 
 ---
@@ -125,12 +125,6 @@ Update-Database
 - Yazar: `/Login/WriterLogin`
 
 Eğitim projesi olduğu için şifreler şu an düz metin.
-
----
-
-## Durum
-
-Kursun büyük kısmı işlendi; paneller, login, rol, mesaj, galeri ve rapor tarafı duruyor. Grafiğin veritabanına bağlanması, istatistik, SweetAlert, şifre hash gibi sonraki dersler henüz yok / yarım.
 
 ---
 
