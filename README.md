@@ -4,7 +4,7 @@ Murat Yücedağ'ın YouTube'daki **MVC Proje Kampı** eğitimini (yaklaşık 100
 
 Amaç basit: ekranda görünen bir site yapmak değil; katmanlı mimari, Entity Framework, repository, validation, login ve panel tarafını gerçekten kurup çalıştırmak. Bu yüzden proje hem öğrenme kaydı hem de portföy örneği olarak duruyor.
 
-Eğitim kanalı: [Murat Yücedağ](https://www.youtube.com/@MuratYucedag)
+Eğitim kanalı: [Murat Yücedağ](https://www.youtube.com/watch?v=yFToRUL6h8A&list=PLKnjBHu2xXNNQJehhCg--CzQQMHXTsFAb)
 
 ---
 
