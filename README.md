@@ -99,4 +99,4 @@ Giriş:
 
 ## Teşekkür
 
-Murat Yücedağ — MVC Proje Kampı
+Emekleri için bu eğtimdeki eğitmen Murat Yücedağ hocama teşekkür ederim.
