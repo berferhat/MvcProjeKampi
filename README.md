@@ -1,86 +1,57 @@
 # MvcProjeKampi
 
-Murat Yücedağ'ın YouTube'daki **MVC Proje Kampı** eğitimini (yaklaşık 100 video) izleyerek yaptığım ASP.NET MVC 5 projesi.
+Murat Yücedağ'ın YouTube **MVC Proje Kampı** eğitimini izleyerek yaptığım ASP.NET MVC 5 projesi.
 
 Eğitim: [MVC Proje Kampı playlist](https://www.youtube.com/watch?v=yFToRUL6h8A&list=PLKnjBHu2xXNNQJehhCg--CzQQMHXTsFAb)
 
----
-
-## Proje özeti
-
-Sözlük / blog tarzı bir uygulama. Üç tarafı var:
-
-- **Vitrin:** başlık ve içerikleri gezme
-- **Yazar paneli:** giriş, profil, başlık, içerik, mesaj
-- **Admin paneli:** kategori, başlık, yazar, içerik, iletişim, galeri, rapor
+Sözlük / blog tarzı bir uygulama. Vitrin, yazar paneli ve admin paneli var.
 
 ---
 
 ## Neler yaptım?
 
-### Katmanlar
-- Solution'ı 4 parçaya ayırdım: `EntityLayer`, `DataAccessLayer`, `BusinessLayer`, `MvcProjeKampi`
-- Referans yönünü buna göre kurdum: UI → Business → DAL → Entity
-
-### Veritabanı
-- Entity Framework 6 Code First
-- Entity'ler: Category, Heading, Content, Writer, About, Contact, Message, ImageFile, Admin
-- İlişkileri (FK / navigation property) tanımladım
-- Migration ile `DbMvcKamp` veritabanını oluşturup güncelledim
-
-### Repository / Business
-- Generic Repository + entity DAL sınıfları
-- Manager sınıflarıyla iş mantığını controller'dan ayırdım
-- FluentValidation (kategori, yazar, mesaj, iletişim)
-
-### Admin paneli
-- AdminLTE entegrasyonu
-- Kategori, başlık, yazar, hakkımızda, mesaj/iletişim, galeri, rapor ekranları
-- Başlık listesi ve rapor sayfası
-
-### Yazar paneli
-- Yazar login
-- Profil, başlık ve içerik işlemleri
-- Gelen / giden mesajlar
-- Session ile giriş yapan yazara göre veri getirme
-
-### Login ve yetki
-- Forms Authentication
-- Global Authorize
-- Admin / yazar için ayrı login
-- Admin rollerinde A / B ayrımı
-- Admin giriş ve rol okumayı `AdminManager` üzerinden yaptım
-
-### Diğer
-- 404 sayfası
-- Galeri (`ImageFile`)
-- Grafik ekranı
-- Vitrin tarafı (`Default`, `HomePage`)
+- Solution'ı 4 katmana ayırdım: EntityLayer, DataAccessLayer, BusinessLayer, MvcProjeKampi
+- Entity Framework 6 Code First ile entity'leri ve ilişkileri yazdım
+- Migration ile `DbMvcKamp` veritabanını oluşturdum
+- Generic Repository ve DAL sınıflarını yazdım
+- Business katmanında Manager sınıflarını yazdım
+- FluentValidation kurallarını ekledim
+- AdminLTE ile admin panelini kurdum
+- Kategori, başlık, yazar, içerik, hakkımızda, iletişim, mesaj, galeri ve rapor ekranlarını yaptım
+- Yazar paneli: login, profil, başlık, içerik, mesaj
+- Vitrin tarafını yaptım
+- Forms Authentication ve rol (A / B) ekledim
+- Admin giriş ve rol işlemlerini AdminManager'a taşıdım
+- Session ile yazara göre veri getirdim
 
 ---
 
-## Bu süreçte gördüğüm konular
+## Neler öğrendim?
 
-- ASP.NET MVC 5 (Controller, View, Layout, Partial)
+- ASP.NET MVC 5
 - Katmanlı mimari
-- EF Code First + Migration
+- Entity Framework Code First
+- Migration
 - Repository Pattern
 - FluentValidation
+- Forms Authentication
+- RoleProvider
 - Session
-- Forms Authentication / RoleProvider
-- AdminLTE tema bağlama
+- AdminLTE tema kullanımı
 - CRUD işlemleri
 
 ---
 
-## Teknolojiler
+## Kullanılan teknolojiler
 
 - ASP.NET MVC 5
 - .NET Framework 4.8
 - Entity Framework 6
 - MSSQL Server
 - FluentValidation
-- AdminLTE 3, Bootstrap, jQuery
+- AdminLTE 3
+- Bootstrap
+- jQuery
 - LINQ
 
 ---
@@ -102,7 +73,7 @@ MvcProjeKampi/
 1. Repoyu klonla
 2. `MvcProjeKampi.sln` dosyasını Visual Studio ile aç
 3. NuGet Restore
-4. `MvcProjeKampi/Web.config` içindeki connection string'i kendi SQL Server'ına göre düzenle:
+4. `MvcProjeKampi/Web.config` içindeki connection string'i düzenle:
 
 ```xml
 <add name="Context"
@@ -120,11 +91,9 @@ Update-Database
 
 6. F5 ile çalıştır
 
-### Giriş
+Giriş:
 - Admin: `/Login/Index`
 - Yazar: `/Login/WriterLogin`
-
-Eğitim projesi olduğu için şifreler şu an düz metin.
 
 ---
 
