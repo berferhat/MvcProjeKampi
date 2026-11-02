@@ -1,90 +1,75 @@
 # MvcProjeKampi
 
-Murat Yücedağ'ın YouTube'daki **MVC Proje Kampı** eğitimini (yaklaşık 100 video) izleyerek adım adım yazdığım ASP.NET MVC projesidir.
+Murat Yücedağ'ın YouTube'daki **MVC Proje Kampı** eğitimini (yaklaşık 100 video) izleyerek yaptığım ASP.NET MVC 5 projesi.
 
-Amaç basit: ekranda görünen bir site yapmak değil; katmanlı mimari, Entity Framework, repository, validation, login ve panel tarafını gerçekten kurup çalıştırmak. Bu yüzden proje hem öğrenme kaydı hem de portföy örneği olarak duruyor.
-
-Eğitim kanalı: [Murat Yücedağ](https://www.youtube.com/watch?v=yFToRUL6h8A&list=PLKnjBHu2xXNNQJehhCg--CzQQMHXTsFAb)
+Eğitim: [MVC Proje Kampı playlist](https://www.youtube.com/watch?v=yFToRUL6h8A&list=PLKnjBHu2xXNNQJehhCg--CzQQMHXTsFAb)
 
 ---
 
-## Proje ne işe yarıyor?
+## Proje özeti
 
-Sözlük / blog tarzı bir web uygulaması:
+Sözlük / blog tarzı bir uygulama. Üç tarafı var:
 
-- Ziyaretçi vitrinde başlıkları ve yazıları gezebiliyor
-- Yazarlar giriş yapıp başlık açabiliyor, içerik yazabiliyor, mesajlaşabiliyor
-- Admin panelinden kategori, başlık, yazar, içerik, iletişim, galeri ve raporlar yönetiliyor
-
-Yani tek sayfalık demo değil; admin + yazar + vitrin olarak üç tarafı olan bir uygulama.
+- **Vitrin:** başlık ve içerikleri gezme
+- **Yazar paneli:** giriş, profil, başlık, içerik, mesaj
+- **Admin paneli:** kategori, başlık, yazar, içerik, iletişim, galeri, rapor
 
 ---
 
-## Bu projede neler yaptım?
+## Neler yaptım?
 
-### Mimari
-- Solution'ı 4 katmana ayırdım: **EntityLayer**, **DataAccessLayer**, **BusinessLayer**, **MvcProjeKampi (UI)**
-- Üst katman alt katmanı tanıyacak şekilde referansları kurdum
-- Entity katmanını bağımsız bıraktım (hiçbir projeye bağımlı değil)
+### Katmanlar
+- Solution'ı 4 parçaya ayırdım: `EntityLayer`, `DataAccessLayer`, `BusinessLayer`, `MvcProjeKampi`
+- Referans yönünü buna göre kurdum: UI → Business → DAL → Entity
 
-### Veri tarafı
-- Entity Framework 6 **Code First** ile çalıştım
-- `Category`, `Heading`, `Content`, `Writer`, `About`, `Contact`, `Message`, `ImageFile`, `Admin` entity'lerini yazdım
-- Primary key, foreign key, navigation property ilişkilerini kurdum
-- SQL Server'da `DbMvcKamp` veritabanını migration ile oluşturdum / güncelledim
-- Cascade hatası gibi gerçekçi sorunlarla uğraşıp çözdüm
+### Veritabanı
+- Entity Framework 6 Code First
+- Entity'ler: Category, Heading, Content, Writer, About, Contact, Message, ImageFile, Admin
+- İlişkileri (FK / navigation property) tanımladım
+- Migration ile `DbMvcKamp` veritabanını oluşturup güncelledim
 
-### Repository ve Business
-- Generic Repository + entity bazlı DAL sınıfları yazdım
-- Business katmanında Manager sınıflarıyla iş kurallarını UI'dan ayırdım
-- FluentValidation ile kategori, yazar, mesaj, iletişim gibi formlarda kurallar tanımladım
+### Repository / Business
+- Generic Repository + entity DAL sınıfları
+- Manager sınıflarıyla iş mantığını controller'dan ayırdım
+- FluentValidation (kategori, yazar, mesaj, iletişim)
 
 ### Admin paneli
-- AdminLTE temasını projeye entegre ettim
-- Kategori, başlık, yazar, hakkımızda, iletişim/mesaj, galeri, rapor ekranlarını yaptım
-- Başlık listesinde kategoriye göre badge renkleri kullandım
-- Heading raporu sayfasını ekledim
+- AdminLTE entegrasyonu
+- Kategori, başlık, yazar, hakkımızda, mesaj/iletişim, galeri, rapor ekranları
+- Başlık listesi ve rapor sayfası
 
 ### Yazar paneli
 - Yazar login
-- Profil düzenleme
-- Kendi başlıklarımı yönetme
-- Tüm başlıklara içerik ekleme
+- Profil, başlık ve içerik işlemleri
 - Gelen / giden mesajlar
-- Session ile oturumdaki yazara göre veri filtreleme
+- Session ile giriş yapan yazara göre veri getirme
 
-### Güvenlik ve yetki
+### Login ve yetki
 - Forms Authentication
-- Proje genelinde Authorize
-- Admin ve yazar için ayrı login sayfaları
+- Global Authorize
+- Admin / yazar için ayrı login
 - Admin rollerinde A / B ayrımı
-- Rol okuma ve admin girişini Business katmanına taşıdım (`AdminManager`)
+- Admin giriş ve rol okumayı `AdminManager` üzerinden yaptım
 
 ### Diğer
-- 404 hata sayfası
-- Galeri (ImageFile tablosundan)
-- Google Chart ile grafik ekranı
-- Vitrin / sözlük tarafı (`Default`, `HomePage`)
+- 404 sayfası
+- Galeri (`ImageFile`)
+- Grafik ekranı (şu an sabit veri)
+- Vitrin tarafı (`Default`, `HomePage`)
 
 ---
 
-## Bu projede öğrendiklerim
+## Bu süreçte gördüğüm konular
 
-Bunlar teoride kalmadı; projede kullandım:
-
-- ASP.NET MVC 5 (Controller, View, Layout, Partial View)
-- N-Tier / katmanlı mimari neden var, referans yönü nasıl olmalı
-- Entity Framework Code First + Migration
-- Repository Pattern ve generic yapı
+- ASP.NET MVC 5 (Controller, View, Layout, Partial)
+- Katmanlı mimari
+- EF Code First + Migration
+- Repository Pattern
 - FluentValidation
-- Session ve Forms Authentication
-- RoleProvider ile rol kontrolü
-- AdminLTE gibi hazır temayı kendi projene bağlamak
-- Admin / yazar paneli ayrımı
-- CRUD işlemlerini uçtan uca yazmak
-- Connection string, DbContext, migration akışı
-
-Kısaca: “MVC biliyorum” demekten ziyade, katmanlı bir MVC projesini baştan kurup ilerletebildiğimi göstermek için uygun bir örnek.
+- Session
+- Forms Authentication / RoleProvider
+- AdminLTE tema bağlama
+- CRUD işlemleri
 
 ---
 
@@ -92,36 +77,31 @@ Kısaca: “MVC biliyorum” demekten ziyade, katmanlı bir MVC projesini başta
 
 - ASP.NET MVC 5
 - .NET Framework 4.8
-- Entity Framework 6 (Code First)
+- Entity Framework 6
 - MSSQL Server
 - FluentValidation
-- Repository Pattern
-- AdminLTE 3 / Bootstrap / jQuery
+- AdminLTE 3, Bootstrap, jQuery
 - LINQ
 
 ---
 
-## Proje yapısı
+## Klasör yapısı
 
 ```
 MvcProjeKampi/
-├── EntityLayer/         # Modeller
-├── DataAccessLayer/     # Context, Repository, Migrations
-├── BusinessLayer/       # Manager + Validation
-└── MvcProjeKampi/       # Controllers, Views, Web.config
+├── EntityLayer/
+├── DataAccessLayer/
+├── BusinessLayer/
+└── MvcProjeKampi/
 ```
-
-Akış:
-
-`UI → Business → Data Access → Entity → SQL Server`
 
 ---
 
-## Kurulum
+## Çalıştırma
 
 1. Repoyu klonla
 2. `MvcProjeKampi.sln` dosyasını Visual Studio ile aç
-3. NuGet Restore yap
+3. NuGet Restore
 4. `MvcProjeKampi/Web.config` içindeki connection string'i kendi SQL Server'ına göre düzenle:
 
 ```xml
@@ -130,43 +110,30 @@ Akış:
      providerName="System.Data.SqlClient" />
 ```
 
-5. Package Manager Console'da:
-   - Default project: **DataAccessLayer**
-   - Startup project: **MvcProjeKampi**
+5. Package Manager Console:
+   - Default project: `DataAccessLayer`
+   - Startup project: `MvcProjeKampi`
 
 ```powershell
 Update-Database
 ```
 
-6. Projeyi çalıştır (F5)
+6. F5 ile çalıştır
 
-### Giriş adresleri
+### Giriş
 - Admin: `/Login/Index`
 - Yazar: `/Login/WriterLogin`
 
-Not: Eğitim projesi olduğu için şifreler şu an düz metin tutuluyor. Canlı bir sistemde hash kullanılır.
+Eğitim projesi olduğu için şifreler şu an düz metin.
 
 ---
 
-## Şu anki durum
+## Durum
 
-Projenin ana iskeleti ve panelleri çalışıyor. Kursun ilerleyen konularına göre grafiklerin veritabanına bağlanması, istatistik ekranı, SweetAlert, şifre hash gibi adımlar eklenebilir / eklenecek.
-
-Yani “her şeyi bitirdim, production hazır” demiyorum. Ama mimari kurulmuş, paneller açılmış, login-rol-mesaj-galeri-rapor tarafı ilerletilmiş bir MVC kamp projesi.
-
----
-
-## Neden portföyde dursun?
-
-- Sadece HTML/CSS değil, gerçek katmanlı backend mantığı var
-- Entity ilişkileri, migration, repository, validation, auth gibi konular bir arada
-- Admin ve yazar gibi iki farklı kullanıcı senaryosu düşünülmüş
-- Eğitim videosunu kopyalayıp bırakmak yerine kendi ortamımda ayağa kaldırıp ilerlettim
-
-İnceleyen biri dosya yapısına bakınca ne yaptığımı net görebilir.
+Kursun büyük kısmı işlendi; paneller, login, rol, mesaj, galeri ve rapor tarafı duruyor. Grafiğin veritabanına bağlanması, istatistik, SweetAlert, şifre hash gibi sonraki dersler henüz yok / yarım.
 
 ---
 
 ## Teşekkür
 
-Murat Yücedağ — MVC Proje Kampı eğitimi için.
+Murat Yücedağ — MVC Proje Kampı
