@@ -1,0 +1,42 @@
+## Visual Studio / build
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+## NuGet
+packages/
+*.nupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+
+## Publish / artifacts
+[Pp]ublish/
+*.publishproj
+*.pubxml.user
+
+## Logs & temp
+*.log
+*.tmp
+*.temp
+*.cache
+
+## OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+## Secrets / local config (keep Web.config template values only)
+*.pfx
+*.publishsettings
+appsettings.*.local.json
+.env
+.env.*
+
+## Rider / VS Code
+.idea/
+.vscode/
